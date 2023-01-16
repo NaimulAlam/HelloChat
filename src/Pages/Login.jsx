@@ -1,36 +1,39 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 const Login = () => {
+  const [err, setErr] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/")
+    } catch (err) {
+      setErr(true);
+    }
+  };
   return (
-    <div>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-3xl font-bold py-2">Hello App!</h1>
-            <h1 className="text-xl font-bold">Login!</h1>
-          </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-2 px-5">
-            <div className="card-body ">
-              <form className='divide-y-2'>
-                <div className="form-control">
-                  <input type="text" placeholder="Email" className="input input-ghost w-full max-w-xs" />
-                </div>
-                <div className="form-control">
-                  <input type="password" placeholder="Password" className="input input-ghost w-full max-w-xs" />
-                </div>
-                <div className="form-control">
-                  <button className="btn btn-outline btn-accent mt-6">Sign in</button>
-                </div>
-              </form>
-              <div className='text-center mt-3'>
-                <p className='text-sm text-gray-400'>You do not have an account? <span className='hover:text-error cursor-pointer'>Sign up</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="formContainer">
+      <div className="formWrapper">
+        <span className="logo">Naim Chat</span>
+        <span className="title">Login</span>
+        <form onSubmit={handleSubmit}>
+          <input type="email" placeholder="email" />
+          <input type="password" placeholder="password" />
+          <button>Sign in</button>
+          {err && <span>Something went wrong</span>}
+        </form>
+        <p>You don't have an account? <Link to="/register">Register</Link></p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
