@@ -205,11 +205,11 @@
           }
 
           img {
-            width: 40px;
             height: 40px;
+            width: 40px;
             border-radius: 50%;
             object-fit: cover;
-            @include mobile {
+            @include tablet {
               width: 25px;
               height: 25px;
             }

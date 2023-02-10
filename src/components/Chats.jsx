@@ -12,7 +12,7 @@ const Chats = () => {
 
   useEffect(() => {
     const getChats = () => {
-      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+      const unsub = onSnapshot(doc(db, "userChats", currentUser?.uid), (doc) => {
         setChats(doc.data());
       });
 
@@ -21,13 +21,13 @@ const Chats = () => {
       };
     };
 
-    currentUser.uid && getChats();
-  }, [currentUser.uid]);
+    currentUser?.uid && getChats();
+  }, [currentUser?.uid]);
 
   console.log('chats', chats);
 
-  const handleSelect = (u) => {
-    dispatch({ type: "CHANGE_USER", payload: u });
+  const handleSelect = (user) => {
+    dispatch({ type: "CHANGE_USER", payload: user });
   };
 
   return (
@@ -40,7 +40,7 @@ const Chats = () => {
         >
           <img src={chat[1]?.userInfo?.photoURL} alt="" />
           <div className="userChatInfo">
-            <span>{chat[1].userInfo.displayName}</span>
+            <span>{chat[1].userInfo?.displayName}</span>
             <p>{chat[1].lastMessage?.text}</p>
           </div>
         </div>
