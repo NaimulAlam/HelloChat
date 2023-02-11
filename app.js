@@ -14,13 +14,13 @@ app.use('/users', userRoutes)
 require('./connection')
 
 const server = require('http').createServer(app);
-const PORT = 5000;
-const io = require('socket.io')(server, {
+const PORT = 5001;
+const io = require("socket.io")(server, {
   cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
-})
+    origin: "https://hellochatapp.netlify.app",
+    methods: ["GET", "POST"],
+  },
+});
 
 
 async function getLastMessagesFromRoom(room){
@@ -96,3 +96,5 @@ app.get('/rooms', (req, res)=> {
 server.listen(PORT, ()=> {
   console.log('listening to port', PORT)
 })
+
+
