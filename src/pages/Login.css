@@ -1,0 +1,11 @@
+.login__bg {
+  background-image: url("../assets/LoginMessage.jpg");
+  height: 90vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  background-color: aliceblue;
+  border-radius: 10px;
+}
+

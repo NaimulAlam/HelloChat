@@ -1,0 +1,15 @@
+.home__bg {
+  background-image: url("../assets/togather.jpg");
+  height: 90vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow-x: hidden;
+  background-color: aliceblue;
+}
+
+.home-message-icon {
+  margin-left: 10px;
+  display: inline-block;
+}
+
